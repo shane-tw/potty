@@ -1,0 +1,27 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Loco Demo\n"
+"POT-Creation-Date: 2020-09-25 20:16+0000\n"
+"PO-Revision-Date: 2020-09-25 20:16+0000\n"
+"Last-Translator: Full Name <email@address>\n"
+"Language-Team: English <email@address>\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Hello World"
+"Epic sauce"
+"Jumanji"
+msgstr ""
+
+# Example comment
+#. Example pluralized message
+#, php-format
+msgid "An example"
+msgid_plural "%s examples"
+msgstr[0] ""
+msgstr[1] ""
+ 

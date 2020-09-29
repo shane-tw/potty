@@ -1,0 +1,19 @@
+[package]
+name = "potty"
+version = "0.1.0"
+authors = ["Shane O Donovan <kenshii.sod@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+regex = "1"
+snailquote = "0.1.1"
+
+[lib]
+name = "potty"
+path = "src/lib.rs"
+
+[[bin]]
+name = "potty"
+path = "src/bin/potty.rs"
