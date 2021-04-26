@@ -3,7 +3,6 @@ use std::str::FromStr;
 use std::io::{Read, Write, BufRead, BufReader};
 use snailquote::{unescape};
 use regex::Regex;
-use std::mem;
 
 pub struct Pot {
     pub messages: Vec<PotMessage>,
@@ -48,6 +47,22 @@ impl Default for PotMessage {
     }
 }
 
+fn format_string(s: &str) -> String {
+    let s = s.replace("\"", "\\\"").replace("\r", "\\r").replace("\t", "\\t");
+    let lines = s.split("\n").enumerate();
+    let lines_count = lines.clone().count();
+    lines.map(|(i, s)| {
+        if i == lines_count - 1 {
+            return format!("\"{}\"", s)
+        }
+        let ss = format!("\"{}\\n\"\n", s);
+        if i == 0 && !s.is_empty() {
+            return format!("\"\"\n{}", ss)
+        }
+        ss
+    }).collect()
+}
+
 impl fmt::Display for PotMessage {
 	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         for comment in &self.comments {
@@ -63,10 +78,11 @@ impl fmt::Display for PotMessage {
             writeln!(f, "msgid_plural \"{}\"", id_plural)?;
         }
         for (i, string) in self.strings.iter().enumerate() {
+            let string = format_string(string);
             if self.id_plural.is_some() {
-                writeln!(f, "msgstr[{}] \"{}\"", i, string)?;
+                writeln!(f, "msgstr[{}] {}", i, string)?;
             } else {
-                writeln!(f, "msgstr \"{}\"", string)?;
+                writeln!(f, "msgstr {}", string)?;
             }
         }
         Ok(())
@@ -266,7 +282,7 @@ impl PotCommand {
                 if idx + 1 > msg.strings.len() {
                     msg.strings.push(val);
                 } else {
-                    mem::replace(&mut msg.strings[idx], val);
+                    msg.strings[idx] = val;
                 }
             },
             _ => (),
