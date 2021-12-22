@@ -8,7 +8,7 @@ edition = "2018"
 
 [dependencies]
 regex = "1"
-snailquote = "0.1.1"
+unescape = "0.1.0"
 
 [lib]
 name = "potty"

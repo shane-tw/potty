@@ -1,7 +1,7 @@
 use std::fmt;
 use std::str::FromStr;
 use std::io::{Read, Write, BufRead, BufReader};
-use snailquote::{unescape};
+use unescape::unescape;
 use regex::Regex;
 
 pub struct Pot {
